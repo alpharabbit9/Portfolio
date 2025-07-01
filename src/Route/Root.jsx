@@ -1,6 +1,6 @@
 import React from 'react';
 import Hero from '../Sections/Hero/Hero';
-import Navbar from '../components/ui/Navbar/navbar';
+import Navbar from '../components/ui/Navbar/Navbar';
 import About from '../Sections/About/About';
 import { Contact } from 'lucide-react';
 import ContactMe from '../Sections/ContactMe/ContactMe';
