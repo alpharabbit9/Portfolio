@@ -93,7 +93,7 @@ export default function Hero() {
                
 
                 {/* CTA Button */}
-                <a href="/Rifat.pdf" download>
+                <a href="/Rifat Resume.pdf" download>
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
