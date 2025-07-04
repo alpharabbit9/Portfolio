@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import { ChevronDown } from "lucide-react";
 import profile from "../../assets/images/profile.jpg";
+import { FaFacebookSquare } from "react-icons/fa";
 
 export default function Hero() {
     return (
@@ -88,6 +89,8 @@ export default function Hero() {
                 </h2>
 
                 <p className="text-xl">from Bangladesh</p>
+
+               
 
                 {/* CTA Button */}
                 <a href="/Rifat.pdf" download>

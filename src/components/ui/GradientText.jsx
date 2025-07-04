@@ -1,16 +1,21 @@
-// src/components/ui/GradientText.jsx
-import React from 'react';
 
-const GradientText = ({ children }) => {
+
+export default function GradientText({
+  children,
+  className = "",
+  colors = ["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"],
+  animationSpeed = 8,
+  showBorder = false
+}) {
+  const gradientStyle = {
+    backgroundImage: `linear-gradient(to right, ${colors.join(", ")})`,
+    animationDuration: `${animationSpeed}s`,
+  };
+
   return (
-    <h1
-      className="text-5xl font-bold text-transparent bg-clip-text 
-                 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
-                 bg-[length:200%_200%] animate-gradient-x"
-    >
-      {children}
-    </h1>
+    <div className={`animated-gradient-text ${className}`}>
+      {showBorder && <div className="gradient-overlay" style={gradientStyle}></div>}
+      <div className="text-content" style={gradientStyle}>{children}</div>
+    </div>
   );
-};
-
-export default GradientText;
+}

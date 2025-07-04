@@ -1,151 +1,156 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GradientText from "../../components/ui/GradientText";
+import Particles from "../../Particle/Particles";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const sectionRef = useRef(null);
-  const contentRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        sectionRef.current,
-        { scale: 0.5, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration:1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top center",
-            end: "bottom center",
-            scrub: true,
-            pin: true,
-          },
-        }
-      );
-    }, sectionRef);
+    const element = sectionRef.current;
 
-    return () => ctx.revert(); // cleanup
+    const animation = gsap.fromTo(
+      element,
+      { opacity: 0, y: 100 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 80%", // animation starts when section top reaches 80% of viewport
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+          // markers: true, // uncomment to debug
+        },
+      }
+    );
+
+    return () => {
+      animation.scrollTrigger?.kill();
+      animation.kill();
+    };
   }, []);
 
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="relative z-10 py-10 text-white bg-[#0f172a] min-h-screen"
-    >
-      <div
-        ref={contentRef}
-        className="px-12 mx-auto text-center about-content"
-      >
-        <h2 className="text-4xl font-bold mb-4 text-cyan-400">About Me</h2>
-        <div className="md:flex text-left">
-          <div className="md:w-2/3 p-7">
-            <h2 className="text-3xl font-bold">
-              Hi, I'm Rifat — a passionate and driven Full Stack Web Developer
-            </h2>
-            <p className="text-lg leading-8 text-slate-300">
-              Hi, I'm{" "}
-              <span className="text-white font-semibold">Rifat</span> — a
-              passionate and driven{" "}
-              <span className="text-cyan-300">Full Stack Web Developer</span>{" "}
-              focused on building{" "}
-              <span className="text-cyan-300 font-semibold">
-                high-performance
-              </span>
-              ,{" "}
-              <span className="text-cyan-300 font-semibold">scalable</span>,
-              and user-centric applications.
-            </p>
-            <p className="text-lg mt-4 leading-8 text-slate-300">
-              I specialize in the{" "}
-              <span className="text-cyan-300 font-semibold">
-                MERN stack (MongoDB, Express.js, React.js, Node.js)
-              </span>{" "}
-              with experience creating responsive UI with{" "}
-              <span className="text-cyan-300">Tailwind CSS</span> and{" "}
-              <span className="text-cyan-300">Daisy UI</span>, developing secure
-              APIs, and handling deployments.
-            </p>
-            <p className="text-lg mt-4 leading-8 text-slate-300">
-              My workflow centers on{" "}
-              <span className="text-cyan-300 font-semibold">clean code</span>,{" "}
-              <span className="text-cyan-300 font-semibold">
-                component reusability
-              </span>
-              , and{" "}
-              <span className="text-cyan-300 font-semibold">
-                optimized performance
-              </span>
-              . Currently diving deeper into{" "}
-              <span className="text-cyan-300 font-semibold">DevOps</span> and{" "}
-              <span className="text-cyan-300 font-semibold">
-                cloud infrastructure
-              </span>{" "}
-              to expand my backend skills.
-            </p>
-            <p className="text-lg mt-4 leading-8 text-slate-300">
-              Beyond code, I’m passionate about solving{" "}
-              <span className="text-cyan-300 font-semibold">
-                real-world problems
-              </span>{" "}
-              by building impactful full-stack solutions from scratch.
-            </p>
-          </div>
+    <div id="about" className="relative min-h-screen overflow-hidden bg-[#0a192f]">
+      {/* Particles Background */}
+      <div className="absolute inset-0 z-0">
+        <Particles
+          particleColors={["#ffffff", "#38bdf8"]}
+          particleCount={120}
+          particleSpread={10}
+          speed={0.2}
+          particleBaseSize={2}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-7">
-            {[
-              {
-                title: "Web Development",
-                text: "Passionate about creating modern web applications",
-              },
-              {
-                title: "Technology Enthusiast",
-                text: "Love exploring and tinkering with new technologies",
-              },
-              {
-                title: "Programming",
-                text: "Dedicated to writing clean, efficient code",
-              },
-              {
-                title: "Computer Science Major",
-                text: "Pursuing Bachelor in Computer Science",
-              },
-            ].map((card, index) => (
-              <div
-                key={index}
-                className="max-w-xs bg-gradient-to-br from-[#1e2a4a] to-[#22315a] rounded-xl border border-[#2b3a66] p-6 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#1e2a4a] mb-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-[#4ea8f7]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M16 18l6-6-6-6M8 6l-6 6 6 6"
-                    />
-                  </svg>
+      {/* About Section */}
+      <section
+        id="about"
+        ref={sectionRef}
+        className="relative z-10 py-20 px-4 text-white min-h-screen"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <GradientText
+            colors={["#38bdf8", "#06b6d4", "#14b8a6", "#22c55e", "#38bdf8"]}
+            animationSpeed={2.5}
+            showBorder={false}
+            className="text-4xl font-extrabold text-center mb-10"
+          >
+            <h2>About Me</h2>
+          </GradientText>
+
+          <div className="md:flex text-left">
+            <div className="md:w-2/3 p-6">
+              <h2 className="text-3xl font-bold mb-4">
+                Hi, I'm Rifat — a passionate and driven Full Stack Web Developer
+              </h2>
+              <p className="text-lg leading-8 text-slate-300">
+                I specialize in the{" "}
+                <span className="text-cyan-300 font-semibold">
+                  MERN stack (MongoDB, Express.js, React.js, Node.js)
+                </span>{" "}
+                and enjoy building{" "}
+                <span className="text-cyan-300 font-semibold">
+                  high-performance, scalable
+                </span>{" "}
+                web applications.
+              </p>
+              <p className="text-lg mt-4 leading-8 text-slate-300">
+                My focus is on{" "}
+                <span className="text-cyan-300 font-semibold">clean code</span>,{" "}
+                <span className="text-cyan-300 font-semibold">
+                  reusable components
+                </span>
+                , and{" "}
+                <span className="text-cyan-300 font-semibold">
+                  performance optimization
+                </span>
+                . I'm also exploring{" "}
+                <span className="text-cyan-300 font-semibold">DevOps</span> and{" "}
+                <span className="text-cyan-300 font-semibold">Cloud</span>{" "}
+                technologies to broaden my backend expertise.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+              {[
+                {
+                  title: "Web Development",
+                  text: "Passionate about building responsive web apps",
+                },
+                {
+                  title: "Tech Enthusiast",
+                  text: "Always exploring new tools and frameworks",
+                },
+                {
+                  title: "Clean Code Advocate",
+                  text: "Focus on performance and readability",
+                },
+                {
+                  title: "CS Major",
+                  text: "Pursuing Bachelor's in Computer Science",
+                },
+              ].map((card, index) => (
+                <div
+                  key={index}
+                  className="bg-white/5 backdrop-blur-md rounded-xl p-5 shadow-lg transition-transform hover:scale-105"
+                >
+                  <div className="w-10 h-10 mb-3 flex items-center justify-center rounded-full bg-cyan-500/20">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-cyan-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-white text-lg font-semibold mb-1">
+                    {card.title}
+                  </h3>
+                  <p className="text-[#9aa7bb] text-sm">{card.text}</p>
                 </div>
-                <h3 className="text-white text-lg font-semibold mb-1">
-                  {card.title}
-                </h3>
-                <p className="text-[#9aa7bb] text-sm">{card.text}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

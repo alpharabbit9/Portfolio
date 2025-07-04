@@ -1,13 +1,18 @@
-// src/sections/TechStack.jsx
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { motion } from "framer-motion";
 import { FaReact, FaHtml5, FaCss3Alt, FaJsSquare, FaNodeJs } from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiFirebase, SiDaisyui, SiShadcnui } from "react-icons/si";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
-// import { loadFull } from "tsparticles-engine";
+import {
+  SiTailwindcss,
+  SiNextdotjs,
+  SiExpress,
+  SiMongodb,
+  SiFirebase,
+  SiDaisyui,
+  SiShadcnui,
+} from "react-icons/si";
+import Particles from "../../Particle/Particles";
 
 const frontend = [
   { name: "React", icon: <FaReact className="text-cyan-400" /> },
@@ -55,36 +60,24 @@ const TechStack = () => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
-
   return (
-    <section id="inventory" className="relative py-20 px-6 bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] bg-[length:400%_400%] animate-gradient-x p-20 text-white">
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: false },
-          background: { color: "transparent" },
-          fpsLimit: 60,
-          interactivity: {
-            events: { onHover: { enable: true, mode: "repulse" } },
-            modes: { repulse: { distance: 100 } },
-          },
-          particles: {
-            color: { value: "#00ffff" },
-            links: { enable: true, color: "#00ffff" },
-            move: { enable: true, speed: 1 },
-            number: { value: 50 },
-            opacity: { value: 0.5 },
-            size: { value: 3 },
-          },
-        }}
-        className="absolute inset-0 z-0"
-      />
+    <div id="inventory" className="relative min-h-screen overflow-hidden bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] bg-[length:400%_400%] animate-gradient-x">
+      {/* Particles behind */}
+      <div className="absolute inset-0 z-0">
+        <Particles
+          particleColors={["#ffffff", "#38bdf8"]}
+          particleCount={120}
+          particleSpread={10}
+          speed={0.2}
+          particleBaseSize={20}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      {/* Content on top */}
+      <section id="inventory" className="relative z-10 max-w-6xl mx-auto py-20 px-6 text-white">
         <motion.h2
           className="text-4xl md:text-5xl font-bold text-center mb-16 text-cyan-400"
           initial={{ opacity: 0, y: -20 }}
@@ -99,8 +92,8 @@ const TechStack = () => {
           <StackGrid title="Backend" items={backend} />
           <StackGrid title="Frameworks & Tools" items={frameworks} />
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
