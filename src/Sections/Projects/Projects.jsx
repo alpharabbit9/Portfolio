@@ -9,6 +9,13 @@ import Particles from '../../Particle/Particles'; // Make sure the path is corre
 
 const projects = [
   {
+    name: 'Leading University Website',
+    image: 'https://i.ibb.co/JwbZBSkZ/leading-university-jet-vercel-app-1.png',
+    liveLink: 'https://leading-university-jet.vercel.app/',
+    githubLink: 'https://github.com/shahriaraf/Leading-University',
+    description: 'An interactive MERN stack-based platform for Leading University that offers real-time bus schedules, result tracking, faculty details, and an integrated AI chatbot to enhance student support.',
+  },
+  {
     name: 'Eduverse Academy',
     image: 'https://i.ibb.co/2Y5BB2Yg/dcfdsfd.png',
     liveLink: 'https://eduverse-academy-df2b0.web.app/',
