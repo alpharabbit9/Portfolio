@@ -271,6 +271,8 @@ const ContactMe = () => {
                                 className='w-full h-32 p-3 rounded-2xl bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] bg-[length:400%_400%] animate-gradient-x border resize-none'
                             />
                         </fieldset>
+
+                        <button className='btn bg-cyan-400 px-6 py-2 text-white mt-3 rounded-3xl'>Send</button>
                     </div>
                 </div>
             </div>

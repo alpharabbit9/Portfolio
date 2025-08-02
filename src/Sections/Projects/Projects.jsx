@@ -16,6 +16,13 @@ const projects = [
     description: 'An interactive MERN stack-based platform for Leading University that offers real-time bus schedules, result tracking, faculty details, and an integrated AI chatbot to enhance student support.',
   },
   {
+    name: 'PawConnect - Connecting Hearts with Paws',
+    image: 'https://i.ibb.co/7J8KYmpG/dsfdsf.png',
+    liveLink: 'https://petnest-client-site.vercel.app/',
+    githubLink: 'https://github.com/alpharabbit9/petnest-client-site',
+    description: 'PawConnect is a smart pet adoption platform that connects adopters with pets in need. Find, adopt, or rehome pets easily. ',
+  },
+  {
     name: 'Eduverse Academy',
     image: 'https://i.ibb.co/2Y5BB2Yg/dcfdsfd.png',
     liveLink: 'https://eduverse-academy-df2b0.web.app/',
